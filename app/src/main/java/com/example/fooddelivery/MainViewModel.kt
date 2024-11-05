@@ -9,71 +9,48 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 
 class MainViewModel(): ViewModel() {
-//    private val _repository: MainRepository = MainRepository()
-//    private val _count = mutableStateOf(_repository.getCounter().count)
-//
-//    val count: MutableState<Int> = _count
-//
-//    fun increment (){
-//        _repository.incrementCounter()
-//        _count.value = _repository.getCounter().count
-//    }
-//
-//    fun decrement (){
-//        _repository.decrementCounter()
-//        _count.value = _repository.getCounter().count
-//    }
-
     var address by mutableStateOf("")
-
     fun updateAddress(value: String) {
         address = value
     }
 
-
-
-    private val _categoryState = mutableStateOf(RecipeState())
-    val categoriesState: State<RecipeState> = _categoryState
+    private val _suggestionState = mutableStateOf(SuggestionState())
+    val suggestionsState: State<SuggestionState> = _suggestionState
 
     init {
-        fetchCategories()
+        fetchSuggestions()
     }
 
-    private fun fetchCategories(){
+    private fun fetchSuggestions(){
         viewModelScope.launch {
             try {
-//                val apiService = createRetrofit()
-//                val requestBody = RequestBody("москва хабар")
-                val requestBody = RequestBody("""{ "query": "москва хабар" }""")
-                val response = recipeService.getCategories(
+//                val requestBody = RequestBody("Ижевск лен")
+                val requestBody = RequestBody("""{ "query": "Ижевск лен" }""")
+                val response = recipeService.getSuggestions(
                     "application/json",
                     "application/json",
                     "Token d6a2ff4513b7990daead5742373d9517758218c9",
-//                    "Token d6a2ff4513b7990daead5742373d9517758218c900",
-//                    "москва хабар"//?????????????????
-//                    "{\"query\": \"Москва Викт\"}"
-//                    """{ "query": "москва хабар" }"""
                     requestBody
                 )
-                _categoryState.value = _categoryState.value.copy(
-//                    list = response.categories,
-                    list = emptyList(),
+                _suggestionState.value = _suggestionState.value.copy(
+                    list = response.suggestions,
+//                    list = emptyList(),
                     loading = false,
                     error = null
                 )
 
             }catch (e: Exception){
-                _categoryState.value = _categoryState.value.copy(
+                _suggestionState.value = _suggestionState.value.copy(
                     loading = false,
-                    error = "Error fetching Categories ${e.message}"
+                    error = "Error fetching Suggestions ${e.message}"
                 )
             }
         }
     }
 
-    data class RecipeState(
+    data class SuggestionState(
         val loading: Boolean = true,
-        val list: List<Category> = emptyList(),
+        val list: List<Suggestion> = emptyList(),
         val error: String? = null
     )
 }

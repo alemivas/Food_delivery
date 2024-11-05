@@ -1,8 +1,11 @@
 package com.example.fooddelivery.components
 
 import android.util.Log
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -25,6 +28,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.vectorResource
@@ -42,7 +46,7 @@ fun AddressSearchBS(
     viewModel: MainViewModel,
     modifier: Modifier = Modifier,
 ){
-    val viewstate by viewModel.categoriesState
+    val viewstate by viewModel.suggestionsState
 
     val sheetState = rememberModalBottomSheetState()
     var searchText by remember { mutableStateOf("") }
@@ -65,10 +69,7 @@ fun AddressSearchBS(
                 onQueryChange = { text ->
                     searchText = text
                 },
-                onSearch = {/*
-                    isActive.value = false
-                    viewModel.loadEverything(it)
-                    keyboardController?.hide()*/
+                onSearch = {
                 },
                 leadingIcon =  {
                     Icon(
@@ -98,14 +99,14 @@ fun AddressSearchBS(
                         fontWeight = FontWeight(400),
                     )
                 },
-                active = /*isActive.value*/ false,
+                active = false,
                 onActiveChange = {
                 }
             ) {
             }
 
             HorizontalDivider()
-/*
+
             LazyColumn(
                 modifier = Modifier
                     .fillMaxSize()
@@ -143,8 +144,7 @@ fun AddressSearchBS(
                     ) {
                         Icon(
                             modifier = Modifier
-                                .size(24.dp)
-                            ,
+                                .size(24.dp),
                             imageVector = ImageVector.vectorResource(R.drawable.outline_location_on_24),
                             contentDescription = "LocationIcon",
                             tint = Color(0xFF717171)
@@ -161,62 +161,53 @@ fun AddressSearchBS(
                                 text = "Ижевск, республика Удмуртия, Россия"
                             )
                         }
-
                     }
                 }
-                item {
-                    Row(
-                        modifier = Modifier
-                            .clickable { onValueSelected("Пушкинская ул., 283") },
-                        verticalAlignment =Alignment.CenterVertically
-                    ) {
-                        Icon(
-                            modifier = Modifier
-                                .size(24.dp)
-                            ,
-                            imageVector = ImageVector.vectorResource(R.drawable.outline_location_on_24),
-                            contentDescription = "SearchIcon",
-                            tint = Color(0xFF717171)
-                        )
-                        Column(
-                            modifier = Modifier
-                                .padding(start = 18.dp)
-                            ,
-                        ) {
-                            Text(
-                                text = "Пушкинская ул., 283"
-                            )
-                            Text(
-                                text = "Ижевск, республика Удмуртия, Россия"
-                            )
-                        }
-                    }
-                }
-            }
-*/
-
-            Box(
-                modifier = Modifier.fillMaxSize()
-            ) {
                 when{
                     viewstate.loading -> {
-                        CircularProgressIndicator(modifier.align(Alignment.Center))
+                        item {
+                            Box(
+                                modifier = Modifier.fillMaxSize()
+                            ){
+                                CircularProgressIndicator(modifier.align(Alignment.Center))
+                            }
+                        }
                     }
-                    viewstate.error != null ->{
-                        Text("ERROR OCCURRED")
-                        Log.d("MyLog", viewstate.error.toString())
+                    viewstate.error != null -> {
+                        item {
+                            Text("ERROR OCCURRED")
+                            Log.d("MyLog", viewstate.error.toString())
+                        }
                     }
-                    else ->{
-                        LazyColumn(
-                            modifier = Modifier.fillMaxSize()
-                        ) {
-                            items(viewstate.list){category ->
-                                Text(
-                                    text = category.value,
-                                    color = Color.Black,
-                                    fontWeight = FontWeight.Bold,
-                                    modifier = Modifier.padding(top =4.dp)
+                    else -> {
+                        items(viewstate.list){suggestion ->
+                            Log.d("MyLog", "ok")
+                            Row(
+                                modifier = Modifier
+//                                    .clickable { onValueSelected("Ленина ул., 113") },
+                                    .clickable { onValueSelected(suggestion.value) },
+                                verticalAlignment =Alignment.CenterVertically
+                            ) {
+                                Icon(
+                                    modifier = Modifier
+                                        .size(24.dp),
+                                    imageVector = ImageVector.vectorResource(R.drawable.outline_location_on_24),
+                                    contentDescription = "LocationIcon",
+                                    tint = Color(0xFF717171)
                                 )
+                                Column(
+                                    modifier = Modifier
+                                        .padding(start = 18.dp)
+                                    ,
+                                ) {
+                                    Text(
+//                                        text = "Ленина ул., 113"
+                                        text = suggestion.value
+                                    )
+                                    Text(  /*TODO*/
+                                        text = "Ижевск, республика Удмуртия, Россия"
+                                    )
+                                }
                             }
                         }
                     }
@@ -225,9 +216,3 @@ fun AddressSearchBS(
         }
     }
 }
-
-//@Preview(showBackground = true)
-//@Composable
-//fun Preview() {
-//    AddressSearchBS()
-//}
