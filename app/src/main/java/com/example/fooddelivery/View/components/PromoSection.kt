@@ -1,4 +1,4 @@
-package com.example.fooddelivery.components
+package com.example.fooddelivery.View.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable

@@ -1,4 +1,4 @@
-package com.example.fooddelivery
+package com.example.fooddelivery.ViewModel
 
 import androidx.compose.runtime.State
 import androidx.compose.runtime.getValue
@@ -6,6 +6,9 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.fooddelivery.Model.RequestBody
+import com.example.fooddelivery.Model.Suggestion
+import com.example.fooddelivery.Model.recipeService
 import kotlinx.coroutines.launch
 
 class MainViewModel(): ViewModel() {

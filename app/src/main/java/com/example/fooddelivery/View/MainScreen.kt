@@ -1,4 +1,4 @@
-package com.example.fooddelivery
+package com.example.fooddelivery.View
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -37,11 +37,13 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.fooddelivery.components.AddressSearchBS
-import com.example.fooddelivery.components.Akcii
-import com.example.fooddelivery.components.Catalog
-import com.example.fooddelivery.components.PromoBanners
-import com.example.fooddelivery.components.PromoSection
+import com.example.fooddelivery.ViewModel.MainViewModel
+import com.example.fooddelivery.R
+import com.example.fooddelivery.View.components.AddressSearchBS
+import com.example.fooddelivery.View.components.Akcii
+import com.example.fooddelivery.View.components.Catalog
+import com.example.fooddelivery.View.components.PromoBanners
+import com.example.fooddelivery.View.components.PromoSection
 
 @Composable
 @OptIn(ExperimentalMaterial3Api::class)
