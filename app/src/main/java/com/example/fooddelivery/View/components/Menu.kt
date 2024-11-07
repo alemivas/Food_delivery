@@ -1,6 +1,7 @@
 package com.example.fooddelivery.View.components
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -30,6 +31,7 @@ fun Menu (){
     Column(
         modifier = Modifier
             .padding(top = 35.dp)
+            .background(Color.White)
     ) {
         Row(
             modifier = Modifier
@@ -38,7 +40,7 @@ fun Menu (){
             verticalAlignment = Alignment.CenterVertically
         ) {
             Image(
-                painter = BitmapPainter(ImageBitmap.imageResource(R.drawable.promo_banner_2)),
+                painter = BitmapPainter(ImageBitmap.imageResource(R.drawable.myphoto)),
                 contentDescription = "image",
                 modifier = Modifier
                     .size(56.dp)
