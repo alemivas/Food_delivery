@@ -68,8 +68,12 @@ fun AddressSearchBS(
                 query = searchText,
                 onQueryChange = { text ->
                     searchText = text
+//                    viewModel.updateSearchQuery(searchText)
+                    viewModel.fetchSuggestions(searchText)
                 },
                 onSearch = {
+//                    viewModel.updateSearchQuery(searchText)
+//                    viewModel.fetchSuggestions()
                 },
                 leadingIcon =  {
                     Icon(
@@ -136,35 +140,9 @@ fun AddressSearchBS(
                         )
                     }
                 }
-                item {
-                    Row(
-                        modifier = Modifier
-                            .clickable { onValueSelected("Ленина ул., 113") },
-                        verticalAlignment =Alignment.CenterVertically
-                    ) {
-                        Icon(
-                            modifier = Modifier
-                                .size(24.dp),
-                            imageVector = ImageVector.vectorResource(R.drawable.outline_location_on_24),
-                            contentDescription = "LocationIcon",
-                            tint = Color(0xFF717171)
-                        )
-                        Column(
-                            modifier = Modifier
-                                .padding(start = 18.dp)
-                            ,
-                        ) {
-                            Text(
-                                text = "Ленина ул., 113"
-                            )
-                            Text(
-                                text = "Ижевск, республика Удмуртия, Россия"
-                            )
-                        }
-                    }
-                }
                 when{
                     viewstate.loading -> {
+                        Log.d("MyLog", "Loading")
                         item {
                             Box(
                                 modifier = Modifier.fillMaxSize()
@@ -174,17 +152,18 @@ fun AddressSearchBS(
                         }
                     }
                     viewstate.error != null -> {
+                        Log.d("MyLog", viewstate.error.toString())
                         item {
                             Text("ERROR OCCURRED")
-                            Log.d("MyLog", viewstate.error.toString())
                         }
                     }
                     else -> {
+                        Log.d("MyLog", "ok")
+                        Log.d("MyLog", viewstate.list.toString())
+
                         items(viewstate.list){suggestion ->
-                            Log.d("MyLog", "ok")
                             Row(
                                 modifier = Modifier
-//                                    .clickable { onValueSelected("Ленина ул., 113") },
                                     .clickable { onValueSelected(suggestion.value) },
                                 verticalAlignment =Alignment.CenterVertically
                             ) {
@@ -201,7 +180,6 @@ fun AddressSearchBS(
                                     ,
                                 ) {
                                     Text(
-//                                        text = "Ленина ул., 113"
                                         text = suggestion.value
                                     )
                                     Text(  /*TODO*/
