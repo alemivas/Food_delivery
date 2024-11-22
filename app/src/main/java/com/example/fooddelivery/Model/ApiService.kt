@@ -5,13 +5,11 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.Body
-import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.POST
 
 private val interceptor = HttpLoggingInterceptor().apply {
     level = HttpLoggingInterceptor.Level.BODY
-//    level = HttpLoggingInterceptor.Level.HEADERS
 }
 
 private val okHttpClient = OkHttpClient.Builder()
@@ -20,7 +18,6 @@ private val okHttpClient = OkHttpClient.Builder()
 
 private val retrofit = Retrofit.Builder()
     .baseUrl("https://suggestions.dadata.ru/")
-//    .baseUrl("https://www.themealdb.com/api/json/v1/1/")
     .client(okHttpClient)
     .addConverterFactory(GsonConverterFactory.create())
     .build()
@@ -36,9 +33,5 @@ interface ApiService {
         @Body requestBody: RequestBody
     ): SuggestionResponse
 }
-//interface ApiService {
-//    @GET("categories.php")
-//    suspend fun getSuggestions():SuggestionResponse
-//}
 
 data class RequestBody(val query: String)

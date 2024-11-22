@@ -68,11 +68,9 @@ fun AddressSearchBS(
                 query = searchText,
                 onQueryChange = { text ->
                     searchText = text
-//                    viewModel.updateSearchQuery(searchText)
                     viewModel.fetchSuggestions(searchText)
                 },
                 onSearch = {
-//                    viewModel.updateSearchQuery(searchText)
 //                    viewModel.fetchSuggestions()
                 },
                 leadingIcon =  {
@@ -114,7 +112,7 @@ fun AddressSearchBS(
             LazyColumn(
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(top = 20.dp/*, start = 15.dp, end = 15.dp*/),
+                    .padding(top = 20.dp),
                 verticalArrangement = Arrangement.spacedBy(20.dp)
             ) {
                 item {
@@ -182,9 +180,9 @@ fun AddressSearchBS(
                                     Text(
                                         text = suggestion.value
                                     )
-                                    Text(  /*TODO*/
-                                        text = "Ижевск, республика Удмуртия, Россия"
-                                    )
+//                                    Text(
+//                                        text = "Ижевск, республика Удмуртия, Россия"
+//                                    )
                                 }
                             }
                         }
