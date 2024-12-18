@@ -118,7 +118,10 @@ fun AddressSearchBS(
                 item {
                     Row(
                         modifier = Modifier
-                            .clickable { onValueSelected("Текущее местоположение") },
+                            .clickable {
+                                onValueSelected("Текущее местоположение")
+                                Log.d ("Click", "Click")
+                            },
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         Icon(
@@ -157,12 +160,14 @@ fun AddressSearchBS(
                     }
                     else -> {
                         Log.d("MyLog", "ok")
-                        Log.d("MyLog", viewstate.list.toString())
 
                         items(viewstate.list){suggestion ->
                             Row(
                                 modifier = Modifier
-                                    .clickable { onValueSelected(suggestion.value) },
+                                    .clickable {
+                                        onValueSelected(suggestion.value)
+                                        Log.d ("Click", "Click")
+                                    },
                                 verticalAlignment =Alignment.CenterVertically
                             ) {
                                 Icon(

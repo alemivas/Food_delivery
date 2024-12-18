@@ -1,5 +1,6 @@
 package com.example.fooddelivery.View.components
 
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -36,7 +37,7 @@ fun Menu (){
         Row(
             modifier = Modifier
                 .padding(start = 16.dp, end = 16.dp)
-                .clickable {  },
+                .clickable { Log.d ("Click", "Click") },
             verticalAlignment = Alignment.CenterVertically
         ) {
             Image(
@@ -77,7 +78,7 @@ fun Menu (){
         ) {
             Column(
                 modifier = Modifier
-                    .clickable {  },
+                    .clickable { Log.d ("Click", "Click") },
             ) {
                 Text(
                     text = "Оплата",
@@ -95,7 +96,7 @@ fun Menu (){
             Text(
                 modifier = Modifier
                     .padding(top = 24.dp)
-                    .clickable {  },
+                    .clickable { Log.d ("Click", "Click") },
                 text = "Мои адреса",
                 fontSize = 16.sp,
                 fontWeight = FontWeight(500),
@@ -104,7 +105,7 @@ fun Menu (){
             Text(
                 modifier = Modifier
                     .padding(top = 24.dp)
-                    .clickable {  },
+                    .clickable { Log.d ("Click", "Click") },
                 text = "Мои заказы",
                 fontSize = 16.sp,
                 fontWeight = FontWeight(500),
@@ -113,7 +114,7 @@ fun Menu (){
             Text(
                 modifier = Modifier
                     .padding(top = 24.dp)
-                    .clickable {  },
+                    .clickable { Log.d ("Click", "Click") },
                 text = "Избранное",
                 fontSize = 16.sp,
                 fontWeight = FontWeight(500),
@@ -122,7 +123,7 @@ fun Menu (){
             Text(
                 modifier = Modifier
                     .padding(top = 24.dp)
-                    .clickable {  },
+                    .clickable { Log.d ("Click", "Click") },
                 text = "Новости",
                 fontSize = 16.sp,
                 fontWeight = FontWeight(500),
@@ -131,7 +132,7 @@ fun Menu (){
             Text(
                 modifier = Modifier
                     .padding(top = 24.dp)
-                    .clickable {  },
+                    .clickable { Log.d ("Click", "Click") },
                 text = "Купоны",
                 fontSize = 16.sp,
                 fontWeight = FontWeight(500),
@@ -140,7 +141,7 @@ fun Menu (){
             Text(
                 modifier = Modifier
                     .padding(top = 24.dp)
-                    .clickable {  },
+                    .clickable { Log.d ("Click", "Click") },
                 text = "О нас",
                 fontSize = 16.sp,
                 fontWeight = FontWeight(500),
@@ -149,7 +150,7 @@ fun Menu (){
             Text(
                 modifier = Modifier
                     .padding(top = 24.dp)
-                    .clickable {  },
+                    .clickable { Log.d ("Click", "Click") },
                 text = "Пригласить друзей",
                 fontSize = 16.sp,
                 fontWeight = FontWeight(500),
@@ -158,7 +159,7 @@ fun Menu (){
             Text(
                 modifier = Modifier
                     .padding(top = 24.dp)
-                    .clickable {  },
+                    .clickable { Log.d ("Click", "Click") },
                 text = "Настройки",
                 fontSize = 16.sp,
                 fontWeight = FontWeight(500),

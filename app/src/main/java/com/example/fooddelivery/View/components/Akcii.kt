@@ -1,5 +1,6 @@
 package com.example.fooddelivery.View.components
 
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -66,7 +67,7 @@ fun Akcii() {
                     .width(115.dp)
                     .height(25.dp)
                 ,
-                onClick = { /*TODO*/ },
+                onClick = { Log.d ("Click", "Click") },
                 colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFF4F4F4))
             ) {
                 Row(
@@ -104,7 +105,7 @@ fun Akcii() {
         ) {
             item {
                 Card(
-                    onClick = { /*TODO*/ }
+                    onClick = { Log.d ("Click", "Click") }
                 ) {
                     Box(
                         modifier = Modifier
@@ -124,7 +125,7 @@ fun Akcii() {
             }
             item {
                 Card(
-                    onClick = { /*TODO*/ }
+                    onClick = { Log.d ("Click", "Click") }
                 ) {
                     Box(
                         modifier = Modifier
@@ -144,7 +145,7 @@ fun Akcii() {
             }
             item {
                 Card(
-                    onClick = { /*TODO*/ }
+                    onClick = { Log.d ("Click", "Click") }
                 ) {
                     Box(
                         modifier = Modifier
@@ -164,7 +165,7 @@ fun Akcii() {
             }
             item {
                 Card(
-                    onClick = { /*TODO*/ }
+                    onClick = { Log.d ("Click", "Click") }
                 ) {
                     Box(
                         modifier = Modifier
@@ -184,7 +185,7 @@ fun Akcii() {
             }
             item {
                 Card(
-                    onClick = { /*TODO*/ }
+                    onClick = { Log.d ("Click", "Click") }
                 ) {
                     Box(
                         modifier = Modifier
@@ -204,7 +205,7 @@ fun Akcii() {
             }
             item {
                 Card(
-                    onClick = { /*TODO*/ }
+                    onClick = { Log.d ("Click", "Click") }
                 ) {
                     Box(
                         modifier = Modifier
@@ -224,7 +225,7 @@ fun Akcii() {
             }
             item {
                 Card(
-                    onClick = { /*TODO*/ }
+                    onClick = { Log.d ("Click", "Click") }
                 ) {
                     Box(
                         modifier = Modifier

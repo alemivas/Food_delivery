@@ -1,5 +1,6 @@
 package com.example.fooddelivery.View
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -98,7 +99,10 @@ fun MainScreen(
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     IconButton(
-                        onClick = { scope.launch {drawerState.open()}  }
+                        onClick = {
+                            Log.d ("Click", "Click")
+                            scope.launch {drawerState.open()}
+                        }
                     ) {
                         Icon(
                             modifier = Modifier
@@ -113,7 +117,10 @@ fun MainScreen(
                     Column(
                         modifier = Modifier
                             .padding(start = 25.dp, end = 15.dp)
-                            .clickable { showAddressSearchBS = true }
+                            .clickable {
+                                Log.d ("Click", "Click")
+                                showAddressSearchBS = true
+                            }
                     ) {
                         Text(
                             text = "Доставка",
@@ -199,7 +206,7 @@ fun MainScreen(
                         modifier = Modifier
                             .size(30.dp)
                             .background(Color(0xFFF4F4F4), CircleShape)
-                            .clickable { /*TODO*/ },
+                            .clickable { Log.d ("Click", "Click") },
                         contentAlignment = Alignment.Center
                     ) {
                         Icon(
