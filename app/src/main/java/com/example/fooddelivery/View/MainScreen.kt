@@ -57,7 +57,6 @@ import kotlinx.coroutines.launch
 @Composable
 @OptIn(ExperimentalMaterial3Api::class)
 fun MainScreen(
-    modifier: Modifier = Modifier,
 ) {
     val viewModel: MainViewModel = viewModel()
 
@@ -232,9 +231,3 @@ fun MainScreen(
         }
     )
 }
-
-//@Preview(showBackground = true)
-//@Composable
-//fun GreetingPreview() {
-//        MainScreen()
-//}
