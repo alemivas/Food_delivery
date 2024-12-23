@@ -35,6 +35,7 @@ import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.fooddelivery.Model.Data
 import com.example.fooddelivery.ViewModel.MainViewModel
 import com.example.fooddelivery.R
 
@@ -162,10 +163,13 @@ fun AddressSearchBS(
                         Log.d("MyLog", "ok")
 
                         items(viewstate.list){suggestion ->
+                            val streetHouseAddressString = makeStreetHouseAddressString(suggestion.data)
+                            val cityAddressString = makeCityAddressString(suggestion.data)
+
                             Row(
                                 modifier = Modifier
                                     .clickable {
-                                        onValueSelected(suggestion.value)
+                                        onValueSelected(streetHouseAddressString)
                                         Log.d ("Click", "Click")
                                     },
                                 verticalAlignment =Alignment.CenterVertically
@@ -183,11 +187,19 @@ fun AddressSearchBS(
                                     ,
                                 ) {
                                     Text(
-                                        text = suggestion.value
+                                        text = streetHouseAddressString,
+                                        color = Color.Black,
+                                        lineHeight = 20.sp,
+                                        fontSize = 16.sp,
+                                        fontWeight = FontWeight(400),
                                     )
-//                                    Text(
-//                                        text = "Ижевск, республика Удмуртия, Россия"
-//                                    )
+                                    Text(
+                                        text = cityAddressString,
+                                        color = Color(0xFF717171),
+                                        lineHeight = 20.sp,
+                                        fontSize = 14.sp,
+                                        fontWeight = FontWeight(400),
+                                    )
                                 }
                             }
                         }
@@ -196,4 +208,31 @@ fun AddressSearchBS(
             }
         }
     }
+}
+
+fun join(arr: Array<String>, separator: String = ", "): String {
+    return arr.filter{it != null && it != "0" && it != "" }.joinToString(separator = separator)
+}
+
+fun makeStreetHouseAddressString(address:Data): String {
+    return join(
+        arrayOf(
+            join(arrayOf(address.street_type, address.street), " "),
+            join(arrayOf(address.house_type, address.house, address.block_type, address.block), " "),
+        )
+    )
+}
+
+fun makeCityAddressString(address:Data): String {
+    return join(
+        arrayOf(
+            join(arrayOf(address.settlement_type, address.settlement), " "),
+            if (address.city != address.region)
+                join(arrayOf(address.city_type, address.city), " ")
+            else "",
+            join(arrayOf(address.area_type, address.area), " "),
+            join(arrayOf(address.region_type, address.region), " "),
+            address.country
+        )
+    )
 }
